@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jhon Lloyd R. Baguisi | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 100%;
+      max-width: 280px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #1abc9c;
+      margin-bottom: 15px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar p {
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .sidebar .contacts {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .sidebar .contacts p {
+      margin: 0.2rem 0;
+    }
+
+    .main-content {
+      margin-left: 280px;
+      padding: 2rem;
+      width: calc(100% - 280px);
+      flex-grow: 1;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      background-color: #1abc9c;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      transform: scale(1.2);
+      text-decoration: underline;
+    }
+
+    section {
+      display: none;
+      margin-top: 20px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+
+    .info, ul {
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+    }
+
+    .info img {
+      margin-top: 0.5rem;
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .info img:hover {
+      transform: scale(1.2);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.7);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.75rem;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #16a085;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 5rem;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .contacts p {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #about p {
+      font-size: 20px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    #about .info {
+      margin-bottom: 20px;
+      background-color: #ecf0f1;
+    }
+    
+    #skills .info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    #skills .info div {
+      background: #1abc9c;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 6px;
+      box-shadow: 1px 1px 6px rgba(0,0,0,0.15);
+      font-weight: bold;
+    }
+
+    .ref-photo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+
+    .reference {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <img src="C:\Users\Ovic\Desktop\Portfolio\Me2.png" alt="Profile Photo">
+    <h1>Jhon Lloyd R. Baguisi</h1>
+    <p>Live Feed Videographer & Computer Hardware Technician</p>
+
+    <div class="contacts">
+      <p>Email: Baguisi.279741@pasay-edsa.sti.edu.ph /<br> jlbcivor@gmail.com</p><br>
+      <p>Phone: 09777492170</p>
+      <p>Location: Makati City, Philippines</p>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <nav>
+      <a onclick="showSection('about')">About</a>
+      <a onclick="showSection('experience')">Experience</a>
+      <a onclick="showSection('skills')">Skills</a>
+      <a onclick="showSection('education')">Education</a>
+      <a onclick="showSection('gallery')">Gallery</a>
+      <a onclick="showSection('contact')">Contact</a>
+      <a onclick="showSection('references')">References</a>
+    </nav>
+
+    <section id="about" class="active">
+      <h2>About Me</h2>
+      <div class="info">
+        <p>Hello! I am Jhon Lloyd R. Baguisi but you can call me Jel, JL, or  Jon. <br><br>I am Live Feed Camera Operator with hands-on experience in church media services and live event streaming. Specialize in capturing high-quality video feeds, framing shots dynamically, and ensuring smooth live broadcasts. Additionally, serve in a semi-assistant director capacity, coordinating camera angles, timing, and transitions to enhance the viewer experience.<br>
+        <br>Technically proficient with computer hardware assembly, maintenance, and troubleshooting, allowing for efficient setup and optimization of system units. Passionate about multimedia technology, with a strong interest in live production techniques, video technology, and real-time broadcast execution.<br>
+        <br>Currently advancing my education at STI College Pasay-EDSA, while actively applying my skills in live production environments. Committed to delivering professional-grade live streams through technical precision, teamwork, and a dedication to continuous learning in the field of multimedia.</p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="info">
+        <strong>Home Computer Builder & Hardware Servicing</strong><br />
+        Freelance<br />
+        <em>2014 – Present</em>
+      </div>
+      <div class="info">
+        <strong>Volunteer Videographer</strong><br />
+        Social Communications, Our Lady of Fatima Parish-Bangkal, Makati<br />
+        <em>Dec 2023 – Present</em>
+      </div>
+      <div class="info">
+        <strong>Volunteer Videographer</strong><br />
+        Archdiocesan Commission on Youth of the Archdiocese of Manila<br />
+        <em>Nov 2023</em>
+      </div>
+    </section>
+
+    <section id="skills" class="tab-section">
+      <h2>Skills</h2>
+      <div class="info">
+        <div>Video Live Stream Camera Operator</div>
+        <div>Camera & Audio Equipment Handling</div>
+        <div>Computer Hardware Assembly</div>
+        <div>Minor PC Troubleshooting</div>
+        <div>Basic Video Recording</div>
+        <div>Basic Photography</div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="info">
+        <strong>STI College Pasay-EDSA</strong><br />
+        Tertiary (Aug 2022 – Present)
+        <img src="C:\Users\Ovic\Desktop\Portfolio\PasayEdsa.webp" alt="STI College Pasay">
+      </div>
+      <div class="info">
+        <strong>AMA Computer Colleges Makati</strong><br />
+        Vocational/Technical (2018 – 2020)
+        <img src="C:\Users\Ovic\Desktop\Portfolio\AMAmakati.jpg" alt="AMA College Makati">
+      </div>
+      <div class="info">
+        <strong>San Isidro National High School</strong><br />
+        High School (2014 – 2018)
+        <img src="C:\Users\Ovic\Desktop\Portfolio\SINHS.jpg" alt="San Isidro NHS">
+      </div>
+      <div class="info">
+        <strong>Hen. Pio del Pilar Elementary School 1</strong><br />
+        Elementary (2008 – 2014)
+        <img src="C:\Users\Ovic\Desktop\Portfolio\PIO1.jpg" alt="Pio del Pilar Elementary">
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>Gallery</h2>
+    <p>Snapshots of my work and personal experience in action.</p>
+    <div class="gallery">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\LCY groupie.jpg" alt="Work Sample 1">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\13.jpg" alt="Work Sample 2">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\12.jpg" alt="Work Sample 3">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\OLFP Inaguration.jpg" alt="Work Sample 4">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\atlas 1.jpg" alt="Work Sample 5">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\atlas.jpg" alt="Work Sample 6">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\LWYD 1.jpeg" alt="Work Sample 7">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\LWYD 2.jpeg" alt="Work Sample 8">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\LWYD 3.jpeg" alt="Work Sample 9">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\nazarenodalaw1.jpg" alt="Work Sample 10">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\nazarenodalaw5.jpg" alt="Work Sample 11">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\nazarenodalaw2.jpg" alt="Work Sample 12">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\nazarenodalaw3.jpg" alt="Work Sample 13">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\nazarenodalaw4.jpg" alt="Work Sample 14">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\holyweek1.jpg" alt="Work Sample 15">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\holyweek2.jpg" alt="Work Sample 16">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\holyweek3.jpg" alt="Work Sample 17">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\mediacon25-1.jpg" alt="Work Sample 18">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\mediacon25-2.jpg" alt="Work Sample 19">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\mediacon25-3.jpg" alt="Work Sample 20">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\mediacon25-4.jpg" alt="Work Sample 21">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\screenshots1.png" alt="Work Sample 22">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\screenshots2.png" alt="Work Sample 23">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\20240522_014150.jpg" alt="Work Sample 24">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\20241202_202743.jpg" alt="Work Sample 25">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\20241209_192022.jpg" alt="Work Sample 26">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\20241209_213713.jpg" alt="Work Sample 27">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\20241209_213721.jpg" alt="Work Sample 28">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\ITweek1.jpg" alt="Work Sample 29">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\ITweek2.jpg" alt="Work Sample 30">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\ITweek3.jpg" alt="Work Sample 31">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\ITweek6.jpg" alt="Work Sample 32">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\ITweek7.jpg" alt="Work Sample 33">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\ITweek5.jpg" alt="Work Sample 34">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\katorse1.jpg" alt="Work Sample 35">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\katorse2.jpg" alt="Work Sample 36">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\katorse3.jpg" alt="Work Sample 37">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\katorse4.jpg" alt="Work Sample 38">
+      <img src="C:\Users\Ovic\Desktop\Portfolio\katorse5.jpg" alt="Work Sample 39">
+      
+    </div>
+  </section>
+
+  <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Have a question or want to work together? Send me a message!</p>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p style="margin-top:1rem; color:#555; font-size:0.9rem">You will be directed to my personal account jlbcivor@gmail.com. If the contact page doesn't work, please use this account.</p>
+    </section>
+
+    <section id="references" class="tab-section">
+      <h2>References</h2>
+      <div class="reference">
+        <img src="C:\Users\Ovic\Desktop\Portfolio\noel.png" alt="Mr. John Noel Guarte" class="ref-photo">
+        <div>
+          <strong>Mr. John Noel Guarte</strong><br />
+          Head Coordinator of Social Communications<br />
+          Our Lady of Fatima Parish-Bangkal, Makati<br />
+          Phone: N/A
+        </div>
+      </div>
+      <div class="reference">
+        <img src="C:\Users\Ovic\Desktop\Portfolio\dad.jpg" alt="Mr. Jhon Renato A. Baguisi" class="ref-photo">
+        <div>
+          <strong>Mr. Jhon Renato A. Baguisi </strong><br />
+          PC Hardware Instructor, Father<br />
+          AMA Computer Colleges Makati - incomplete<br />
+          Phone: 09157704523
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Jhon Lloyd R. Baguisi. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>
